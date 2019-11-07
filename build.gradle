@@ -17,4 +17,22 @@ allprojects {
         jcenter()
         maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
     }
+
+    ext {
+        versionName = '1.4.1'
+
+        minSdkVersion = 21
+        compileSdkVersion = 28
+        targetSdkVersion = 28
+
+        buildToolsVersion = '28.0.3'
+
+        bintrayUser = System.getenv('BINTRAY_USER')
+        bintrayKey = System.getenv('BINTRAY_KEY')
+
+        moduleOrg = 'cheerz'
+        moduleRepo = 'private-maven'
+        moduleGroupId = 'com.cheerz.android'
+        moduleWebsite = 'https://github.com/cheerz/androidsvg'
+    }
 }

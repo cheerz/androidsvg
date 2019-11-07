@@ -1,10 +1,22 @@
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.1'
+    }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        minSdkVersion 8
-        targetSdkVersion 28
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -25,9 +37,22 @@ android {
     }
 }
 
-apply from: 'publish.gradle'
-
 dependencies {
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:0.5'
+}
+
+publish {
+    // Bintray credentials
+    bintrayUser = project.ext.bintrayUser
+    bintrayKey = project.ext.bintrayKey
+
+    // Repository config
+    userOrg = project.ext.moduleOrg
+    repoName = project.ext.moduleRepo
+    groupId = project.ext.moduleGroupId
+    website = project.ext.moduleWebsite
+    artifactId = 'androidsvg'
+    publishVersion = project.ext.versionName
+    desc = 'Unified customization module'
 }
